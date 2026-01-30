@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "http-server -a localhost -p 8000 -c-1 --index index.html",
+    "build": "echo 'Static site - no build required'",
     "start": "npm run dev"
   },
   "dependencies": {
