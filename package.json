@@ -2,16 +2,7 @@
   "name": "js-brixen-crm",
   "version": "1.0.0",
   "description": "JS Brixen CRM with Firebase Authentication",
-  "type": "module",
   "scripts": {
-    "dev": "http-server -a localhost -p 8000 -c-1 --index index.html",
-    "build": "echo 'Static site - no build required'",
-    "start": "npm run dev"
-  },
-  "dependencies": {
-    "firebase": "^12.8.0"
-  },
-  "devDependencies": {
-    "http-server": "^14.1.1"
+    "build": "echo 'No build needed - static site'"
   }
 }
