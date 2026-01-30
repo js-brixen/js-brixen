@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JS Construction CRM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f7fafc;
+            min-height: 100vh;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-size: 18px;
+            color: #718096;
+        }
+
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.show {
+            display: block;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #1a202c;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-badge {
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .btn-logout {
+            background: #f56565;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-logout:hover {
+            background: #e53e3e;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            color: #1a202c;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .admin-section {
+            background: #fef5e7;
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .admin-section h3 {
+            color: #d68910;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .btn-create-user {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-create-user:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading state -->
+    <div id="loading" class="loading">
+        <p>🔐 Verifying authentication...</p>
+    </div>
+
+    <!-- Dashboard (shown after auth check) -->
+    <div id="dashboard" class="dashboard">
+        <div class="header">
+            <h1>🏗️ JS Construction CRM</h1>
+            <div class="user-info">
+                <div>
+                    <div id="userName" style="font-weight: 600; color: #1a202c;"></div>
+                    <div id="userEmail" style="font-size: 12px; color: #718096;"></div>
+                </div>
+                <span id="userRole" class="user-badge"></span>
+                <button id="logoutBtn" class="btn-logout">Logout</button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="card">
+                <h2>Welcome to Your Dashboard</h2>
+                <p>You have successfully logged in to the JS Construction CRM system.</p>
+                <p>This is a protected page that requires authentication. The auth guard middleware verified your
+                    credentials before displaying this content.</p>
+            </div>
+
+            <!-- Admin-only section -->
+            <div id="adminSection" class="card" style="display: none;">
+                <h2>Admin Tools</h2>
+                <p>As an administrator, you have access to additional features:</p>
+
+                <div class="admin-section">
+                    <h3>Create New User</h3>
+                    <p>Use the browser console to create new users. Example:</p>
+                    <div class="code-block">
+                        import { createUserByAdmin } from './src/firebase/auth.js';
+
+                        await createUserByAdmin(
+                        'newuser@example.com',
+                        'SecurePassword123!',
+                        'John Doe',
+                        'staff' // or 'admin', 'manager', 'viewer'
+                        );
+                    </div>
+                    <p style="margin-top: 12px; font-size: 14px; color: #718096;">
+                        💡 Tip: Open the browser console (F12) and paste the code above to create a new user.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Next Steps</h2>
+                <p>This authentication infrastructure is now ready. You can:</p>
+                <ul style="margin-left: 24px; color: #4a5568; line-height: 1.8;">
+                    <li>Deploy the Cloud Function to enable user creation</li>
+                    <li>Create additional protected pages using the auth guard</li>
+                    <li>Build your CRM features (projects, clients, etc.)</li>
+                    <li>Integrate Cloudinary for image uploads</li>
+                    <li>Customize the UI to match your brand</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { requireAuth } from './src/middleware/authGuard.js';
+        import { signOutUser } from './src/firebase/auth.js';
+
+        const loading = document.getElementById('loading');
+        const dashboard = document.getElementById('dashboard');
+        const adminSection = document.getElementById('adminSection');
+
+        // Protect this page - require authentication
+        requireAuth(
+            ['admin', 'staff', 'manager', 'viewer'], // Allow all roles
+            (user) => {
+                // User is authenticated - show dashboard
+                console.log('Access granted:', user);
+
+                // Hide loading, show dashboard
+                loading.style.display = 'none';
+                dashboard.classList.add('show');
+
+                // Display user info
+                document.getElementById('userName').textContent = user.name || 'User';
+                document.getElementById('userEmail').textContent = user.email;
+                document.getElementById('userRole').textContent = user.role;
+
+                // Show admin section if user is admin
+                if (user.role === 'admin') {
+                    adminSection.style.display = 'block';
+                }
+            },
+            () => {
+                // Access denied - redirect to login
+                console.log('Access denied, redirecting to login...');
+                window.location.href = '/src/pages/login.html';
+            }
+        );
+
+        // Logout button
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await signOutUser();
+                window.location.href = '/src/pages/login.html';
+            } catch (error) {
+                console.error('Logout error:', error);
+                alert('Failed to logout. Please try again.');
+            }
+        });
+    </script>
+</body>
+
+</html>

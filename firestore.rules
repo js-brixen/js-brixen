@@ -1,0 +1,141 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return request.auth != null && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user is admin or staff
+    function isAdminOrStaff() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'staff'];
+    }
+
+    // Admin/Staff users collection
+    match /users/{userId} {
+      // Users can read their own profile
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      // Admins can read all user profiles
+      allow read: if isAdmin();
+      // Users can update their own notification preferences and last login
+      allow update: if isAuthenticated() && request.auth.uid == userId && 
+                       request.resource.data.diff(resource.data).affectedKeys()
+                       .hasOnly(['notificationPrefs', 'updatedAt', 'lastLoginAt']);
+      // Only admins can create/update/delete users
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin();
+    }
+
+    // Customer accounts (website customers)
+    match /customers/{customerId} {
+      // Customers can read/write their own document
+      allow read, write: if request.auth != null && request.auth.uid == customerId;
+      // Admins can read all customers
+      allow read: if isAdminOrStaff();
+    }
+
+    // Services collection
+    match /services/{serviceId} {
+      allow read: if true; // Public read
+      allow write: if isAdmin();
+    }
+    
+    // Projects collection
+    match /projects/{projectId} {
+      allow read: if true; // Public read
+      allow write: if isAdmin();
+    }
+    
+    // Bookings collection (updated to require authentication)
+    match /bookings/{bookingId} {
+      // Website customers can CREATE new bookings (requires authentication)
+      allow create: if request.auth != null 
+                    && request.resource.data.customerUid == request.auth.uid
+                    && request.resource.data.keys().hasAll(['name', 'phone', 'district', 'typeOfWork', 'status', 'source', 'createdAt', 'customerUid', 'customerEmail'])
+                    && request.resource.data.status == 'new'
+                    && request.resource.data.source in ['website', 'service_page', 'project_page', 'whatsapp'];
+      
+      // Customers can READ their own bookings
+      // Note: For list queries, the query constraints must match the rule
+      // Customers can READ their own bookings
+      // Note: For list queries, the query constraints must match the rule
+      allow read: if (request.auth != null && resource.data.customerUid == request.auth.uid) || isAdminOrStaff();
+      
+      // Only admin/staff can UPDATE bookings
+      allow update: if isAdminOrStaff();
+      
+      // Only admin can DELETE bookings
+      allow delete: if isAdminOrStaff() && 
+                    get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      
+      // Internal Notes subcollection (Customers can READ updates)
+      match /internalNotes/{noteId} {
+        allow read: if isAdminOrStaff() || (request.auth != null && get(/databases/$(database)/documents/bookings/$(bookingId)).data.customerUid == request.auth.uid);
+        allow write: if isAdminOrStaff();
+      }
+      
+      // Attachments subcollection
+      match /attachments/{attachmentId} {
+        allow read, write: if isAdminOrStaff();
+      }
+      
+      // Audit log subcollection
+      match /audit/{auditId} {
+        allow read: if isAdminOrStaff();
+        allow create: if isAdminOrStaff();
+      }
+    }
+    
+    // Contact Requests collection (new)
+    match /contactRequests/{requestId} {
+      // Customers can create contact requests
+      allow create: if request.auth != null
+                    && request.resource.data.customerUid == request.auth.uid;
+      // Admin/staff can read and update contact requests
+      allow read, update: if isAdminOrStaff();
+      // Only admin can delete contact requests
+      allow delete: if isAdmin();
+    }
+    
+    // Site Content collection
+    match /siteContent/{docId} {
+      allow read: if true; // Public read
+      allow write: if isAdmin();
+    }
+    
+    // Notifications collection
+    match /notifications/{notificationId} {
+      allow read, update, delete: if isAuthenticated();
+      allow create: if isAuthenticated();
+    }
+    
+    // Analytics collection (optional - if you're using it)
+    match /analytics/{docId} {
+      allow read, write: if isAdmin();
+    }
+    
+    // App Settings collection (for booking cooldown, etc.)
+    match /appSettings/{settingId} {
+      allow read: if true; // Public read so website can check cooldown
+      allow write: if isAdmin(); // Only admins can update settings
+    }
+    
+    // Booking Rate Limits collection (spam prevention)
+    match /bookingRateLimits/{limitId} {
+      allow read: if true; // Anyone can check if they're rate limited
+      // Allow create/update
+      // We allow any authenticated or unauthenticated user to write their own rate limit record
+      // The document ID is the fingerprint, so collisions are handled by design
+      allow create, update: if true; 
+      allow delete: if isAdminOrStaff(); // Only admins/staff can manually clear rate limits
+    }
+  }
+}

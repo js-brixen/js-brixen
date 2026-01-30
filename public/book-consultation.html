@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Book a free consultation with JS Brixen. Schedule a site visit and discuss your construction project with our experts in Kerala & Karnataka.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Book Free Consultation | JS Brixen">
+    <meta property="og:description" content="Free site visit • Transparent quotes • Trusted local teams">
+    <meta property="og:type" content="website">
+
+    <title>Book a Free Consultation | JS Brixen</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/account-menu.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/forms.css">
+    <link rel="stylesheet" href="assets/css/auth-modal.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__inner">
+            <a class="logo" href="index.html">
+                <img src="assets/images/js-logo.png" alt="JS Brixen" style="height: 60px; margin-right: 12px;">
+                <span class="logo-text">JS Brixen</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            <nav class="nav">
+                <a href="index.html" class="nav__link">Home</a>
+                <a href="services.html" class="nav__link">Services</a>
+                <a href="projects.html" class="nav__link">Projects</a>
+                <a href="book-consultation.html" class="nav__link nav__link--active">Booking</a>
+                <a href="about.html" class="nav__link">About</a>
+                <a href="contact.html" class="nav__link">Contact</a>
+                <div class="nav__account-wrapper">
+                    <button class="nav__link nav__account-toggle" aria-expanded="false">Account</button>
+                    <div class="account-dropdown" hidden>
+                        <!-- Logged out state -->
+                        <div class="account-dropdown__guest">
+                            <p>Sign in to track your bookings</p>
+                            <button class="btn-primary btn-sm" id="accountSignInBtn">Sign In</button>
+                        </div>
+                        <!-- Logged in state -->
+                        <div class="account-dropdown__user" hidden>
+                            <img class="account-dropdown__avatar" src="" alt="User Avatar">
+                            <div class="account-dropdown__info">
+                                <span class="account-dropdown__name"></span>
+                                <span class="account-dropdown__email"></span>
+                            </div>
+                            <button class="btn-secondary btn-sm" id="accountSignOutBtn">Sign Out</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container page-hero__inner">
+                <div class="page-hero__content">
+                    <h1>Book a Free Consultation — Build Your Home in Kerala & Karnataka</h1>
+                    <p class="page-hero__subtext">Free site visit • Transparent quotes • Trusted local teams</p>
+                    <div class="page-hero__cta">
+                        <a href="#booking-form" class="btn-primary">Book Free Consultation</a>
+                    </div>
+                </div>
+                <div class="page-hero__image">
+                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80"
+                        alt="Construction site with workers" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Row -->
+        <section class="trust-row">
+            <div class="container trust-row__inner">
+                <div class="trust-item">
+                    <span class="trust-item__icon">✓</span>
+                    <span class="trust-item__text">Free Consultation</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-item__icon">✓</span>
+                    <span class="trust-item__text">Kerala & Karnataka Wide</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-item__icon">✓</span>
+                    <span class="trust-item__text">Experienced Teams</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Form Section -->
+        <section id="booking-form" class="booking-section">
+            <div class="container">
+                <!-- Form Wrapper -->
+                <div class="form-wrapper">
+                    <h2>Request Your Free Consultation</h2>
+                    <p style="color: var(--color-text-light); margin-bottom: var(--spacing-md);">
+                        Fill out the form below and our team will contact you within 24 hours to schedule your free site
+                        visit.
+                    </p>
+
+                    <form id="consultationForm" novalidate>
+                        <!-- Personal Details -->
+                        <fieldset>
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                                <legend style="margin-bottom: 0;">Personal Details</legend>
+                                <button type="button" id="autoFillBtn" class="btn-text"
+                                    style="font-size: 0.9rem; color: var(--accent-color); display: flex; align-items: center; gap: 6px; padding: 4px 8px; border: 1px solid var(--accent-color); border-radius: 4px; background: rgba(0, 240, 255, 0.1);">
+                                    ✨ Auto-fill
+                                </button>
+                            </div>
+
+                            <div class="form-grid form-grid--two-col">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name <span class="required-indicator">*</span></label>
+                                    <input type="text" id="fullName" name="fullName" required aria-required="true"
+                                        aria-invalid="false">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number <span class="required-indicator">*</span></label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="9876543210"
+                                        aria-required="true" aria-invalid="false">
+                                    <span class="form-hint">Enter 10-digit mobile number</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="district">District <span class="required-indicator">*</span></label>
+                                <select id="district" name="district" required aria-required="true"
+                                    aria-invalid="false">
+                                    <option value="">-- Select District --</option>
+                                    <optgroup label="Kerala">
+                                        <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                                        <option value="Kollam">Kollam</option>
+                                        <option value="Pathanamthitta">Pathanamthitta</option>
+                                        <option value="Alappuzha">Alappuzha</option>
+                                        <option value="Kottayam">Kottayam</option>
+                                        <option value="Idukki">Idukki</option>
+                                        <option value="Ernakulam">Ernakulam</option>
+                                        <option value="Thrissur">Thrissur</option>
+                                        <option value="Palakkad">Palakkad</option>
+                                        <option value="Malappuram">Malappuram</option>
+                                        <option value="Kozhikode">Kozhikode</option>
+                                        <option value="Wayanad">Wayanad</option>
+                                        <option value="Kannur">Kannur</option>
+                                        <option value="Kasaragod">Kasaragod</option>
+                                    </optgroup>
+                                    <optgroup label="Karnataka">
+                                        <option value="Bengaluru">Bengaluru</option>
+                                        <option value="Mysuru">Mysuru</option>
+                                        <option value="Mangaluru">Mangaluru</option>
+                                        <option value="Hubli-Dharwad">Hubli-Dharwad</option>
+                                        <option value="Gulbarga">Gulbarga</option>
+                                    </optgroup>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </fieldset>
+
+                        <!-- Project Information -->
+                        <fieldset>
+                            <legend>Project Information</legend>
+                            <div class="form-group">
+                                <label for="typeOfWork">Type of Service <span
+                                        class="required-indicator">*</span></label>
+                                <select id="typeOfWork" name="typeOfWork" required aria-required="true"
+                                    aria-invalid="false">
+                                    <option value="">-- Select Type of Service --</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-grid form-grid--two-col">
+                                <div class="form-group">
+                                    <label for="plotSize">Plot Size (Optional)</label>
+                                    <input type="text" id="plotSize" name="plotSize"
+                                        placeholder="e.g., 22 cents or 1200 sq.ft">
+                                </div>
+                                <div class="form-group">
+                                    <label for="budgetRange">Budget Range (Optional)</label>
+                                    <select id="budgetRange" name="budgetRange">
+                                        <option value="">-- Select Budget --</option>
+                                        <option value="< ₹10L">
+                                            < ₹10L</option>
+                                        <option value="₹10L–₹25L">₹10L–₹25L</option>
+                                        <option value="₹25L–₹50L">₹25L–₹50L</option>
+                                        <option value="₹50L+">₹50L+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="siteLocation">Site Location (Optional)</label>
+                                <div style="display: flex; gap: 8px;">
+                                    <input type="text" id="siteLocation" name="siteLocation"
+                                        placeholder="City, Town or specific location" style="flex: 1;">
+                                    <button type="button" id="detectLocationBtn" class="btn-secondary btn-icon"
+                                        title="Use my current location" style="padding: 0 12px; margin: 0;">
+                                        📍
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Preferred Slot -->
+                        <fieldset>
+                            <legend>Preferred Slot (Optional)</legend>
+                            <div class="form-grid form-grid--two-col">
+                                <div class="form-group">
+                                    <label for="preferredDate">Preferred Date</label>
+                                    <input type="date" id="preferredDate" name="preferredDate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="preferredTime">Preferred Time</label>
+                                    <input type="time" id="preferredTime" name="preferredTime">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Additional Notes -->
+                        <fieldset>
+                            <legend>Additional Notes</legend>
+                            <div class="form-group">
+                                <label for="notes">Any specific requirements or questions?</label>
+                                <textarea id="notes" name="notes" rows="4"
+                                    placeholder="Tell us more about your project..."></textarea>
+                            </div>
+                        </fieldset>
+
+                        <!-- Honeypot (hidden anti-spam field) -->
+                        <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off">
+
+                        <!-- Consent -->
+                        <div class="consent-group">
+                            <input type="checkbox" id="consent" name="consent" required aria-required="true">
+                            <label for="consent">I agree to be contacted about my enquiry <span
+                                    class="required-indicator">*</span></label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn-primary btn-submit">Book Free Consultation</button>
+                    </form>
+                </div>
+
+                <!-- Success State (hidden initially) -->
+                <div id="formSuccess" class="form-success" hidden>
+                    <h2>🎉 Thank You!</h2>
+                    <p>Our team will contact you to confirm your consultation.<br>
+                        Expect a call or WhatsApp message within 24 hours.</p>
+                    <p style="margin-top: var(--spacing-md);">
+                        Your Reference ID: <strong id="refId"></strong>
+                    </p>
+                    <div class="success-actions">
+                        <button id="bookAnother" type="button">Book Another Consultation</button>
+                        <a href="index.html">Go to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What happens after I book a consultation?
+                        </button>
+                        <div class="faq-answer">
+                            Our team will contact you within 24 hours to confirm your preferred date and time.
+                            We'll schedule a free site visit where our expert will assess your requirements and
+                            provide initial guidance.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Is the consultation really free?
+                        </button>
+                        <div class="faq-answer">
+                            Yes, absolutely! The initial consultation and site visit are completely free with no
+                            obligations. We'll provide you with a transparent quote and project timeline.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Which areas do you serve?
+                        </button>
+                        <div class="faq-answer">
+                            We serve all districts in Kerala and major cities in Karnataka including Bengaluru,
+                            Mysuru, and Mangaluru. If you're in a different area, please contact us to check
+                            availability.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secondary CTA -->
+        <section class="secondary-cta">
+            <div class="container">
+                <h2>Prefer to Talk Directly?</h2>
+                <p>Our team is available to answer your questions</p>
+                <div class="secondary-cta__buttons">
+                    <a href="tel:+91XXXXXXXXXX" class="btn-phone">📞 Call Now</a>
+                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi, I'd like to book a consultation"
+                        class="btn-whatsapp">💬 WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Customer Authentication Modal -->
+    <div id="authModal" class="auth-modal" aria-hidden="true">
+        <div class="auth-modal__backdrop"></div>
+        <div class="auth-modal__container">
+            <button class="auth-modal__close" aria-label="Close">×</button>
+
+            <div class="auth-modal__content">
+                <h2>Sign In to Continue</h2>
+                <p>Please sign in to book your free consultation</p>
+
+                <!-- Step 1: Sign In Options -->
+                <div id="authStep1" class="auth-step" style="display: block;">
+                    <button id="googleSignInBtn" class="btn-google">
+                        <svg width="20" height="20" viewBox="0 0 48 48">
+                            <path fill="#FFC107"
+                                d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />
+                            <path fill="#FF3D00"
+                                d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" />
+                            <path fill="#4CAF50"
+                                d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" />
+                            <path fill="#1976D2"
+                                d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
+                        </svg>
+                        Continue with Google
+                    </button>
+
+                    <div class="auth-separator">
+                        <span>OR</span>
+                    </div>
+
+                    <form id="emailSignInForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="signInEmail">Email</label>
+                            <input type="email" id="signInEmail" required placeholder="name@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="signInPassword">Password</label>
+                            <input type="password" id="signInPassword" required placeholder="Enter your password">
+                        </div>
+                        <button type="submit" id="emailSignInBtn" class="btn-primary" style="width: 100%;">Sign
+                            In</button>
+                    </form>
+
+                    <div class="auth-switch">
+                        <p>Don't have an account? <button id="switchToSignUp" class="btn-link">Sign Up</button></p>
+                    </div>
+                </div>
+
+                <!-- Step: Sign Up -->
+                <div id="authStepSignUp" class="auth-step" style="display: none;">
+                    <button class="btn-google google-signup-btn">
+                        <svg width="20" height="20" viewBox="0 0 48 48">
+                            <path fill="#FFC107"
+                                d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />
+                            <path fill="#FF3D00"
+                                d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" />
+                            <path fill="#4CAF50"
+                                d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" />
+                            <path fill="#1976D2"
+                                d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
+                        </svg>
+                        Continue with Google
+                    </button>
+
+                    <div class="auth-separator">
+                        <span>OR</span>
+                    </div>
+
+                    <form id="emailSignUpForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="signUpName">Full Name</label>
+                            <input type="text" id="signUpName" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpEmail">Email</label>
+                            <input type="email" id="signUpEmail" required placeholder="name@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpPassword">Password</label>
+                            <input type="password" id="signUpPassword" required
+                                placeholder="Create a password (min 6 chars)" minlength="6">
+                        </div>
+                        <button type="submit" id="emailSignUpBtn" class="btn-primary" style="width: 100%;">Create
+                            Account</button>
+                    </form>
+
+                    <div class="auth-switch">
+                        <p>Already have an account? <button id="switchToSignIn" class="btn-link">Sign In</button></p>
+                    </div>
+                </div>
+
+                <!-- Step: Google Password (new intermediate step) -->
+                <div id="authStepGooglePassword" class="auth-step" style="display: none;">
+                    <h3>Create Password</h3>
+                    <p>Create a password to secure your account:</p>
+                    <div class="form-group">
+                        <label for="googleSignUpPassword">Password</label>
+                        <input type="password" id="googleSignUpPassword" required placeholder="Enter any password">
+                    </div>
+                    <button id="googlePasswordNextBtn" class="btn-primary"
+                        style="width: 100%; margin-top: 15px;">Continue</button>
+                </div>
+
+                <!-- Step 2: Phone Number (for new signups) -->
+                <div id="authStep2" class="auth-step" style="display: none;">
+                    <p>Almost done! Enter your phone number:</p>
+                    <input type="tel" id="customerPhone" placeholder="9876543210" pattern="[6-9][0-9]{9}" maxlength="10"
+                        required>
+                    <span style="font-size: 14px; color: #666; display: block; margin-bottom: 16px;">10-digit number
+                        starting with 6-9</span>
+                    <button id="completeSignupBtn" class="btn-primary">Complete Sign Up</button>
+                </div>
+
+                <!-- Logged In State -->
+                <div id="authLoggedIn" class="auth-step" style="display: none;">
+                    <div class="user-info">
+                        <img id="userPhoto" src="" alt="Profile">
+                        <span id="userName"></span>
+                    </div>
+                    <p>You're signed in! You can now book your consultation.</p>
+                    <button id="continueBtn" class="btn-primary">Continue to Form</button>
+                    <button id="signOutBtn" class="btn-text">Sign out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__section">
+                    <h3>JS Brixen</h3>
+                    <p>Building dreams across Kerala & Karnataka with quality, trust, and expertise.</p>
+                </div>
+                <div class="footer__section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer__links">
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="book-consultation.html">Booking</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h3>Contact</h3>
+                    <ul class="footer__links">
+                        <li><a href="tel:+91XXXXXXXXXX" id="footer-phone-link" data-keep-icon="true">📞 +91
+                                XXXXXXXXXX</a></li>
+                        <li><a href="mailto:info@jsconstruction.com" id="footer-email-link" data-keep-icon="true">📧
+                                info@jsconstruction.com</a></li>
+                        <li><a href="https://wa.me/91XXXXXXXXXX" id="footer-whatsapp-link" data-keep-icon="true">💬
+                                WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <p>&copy; 2026 JS Brixen. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/customer-auth.js"></script>
+    <script src="assets/js/auth-modal.js"></script>
+    <script src="assets/js/account-menu.js"></script>
+    <script type="module" src="assets/js/global-rate-limit.js"></script>
+    <script type="module" src="assets/js/booking.js?v=6"></script>
+
+    <!-- Firebase Content Loader -->
+    <script type="module">
+        import { fetchAndRenderContent } from './assets/js/content-loader.js?v=4';
+        document.addEventListener('DOMContentLoaded', fetchAndRenderContent);
+    </script>
+</body>
+
+</html>
