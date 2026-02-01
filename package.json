@@ -1,0 +1,9 @@
+{
+  "name": "js-brixen-crm",
+  "version": "1.0.0",
+  "description": "JS Brixen CRM with Firebase Authentication",
+  "scripts": {
+    "build": "echo 'No build needed - static site'",
+    "dev": "http-server"
+  }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View your bookings and messages from JS Brixen.">
+
+    <title>My Bookings | JS Brixen</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/account-menu.css">
+    <link rel="stylesheet" href="assets/css/auth-modal.css">
+    <link rel="stylesheet" href="assets/css/my-bookings.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__inner">
+            <a class="logo" href="index.html">
+                <img src="assets/images/js-logo.png" alt="JS Brixen" style="height: 60px; margin-right: 12px;"
+                    loading="eager" fetchpriority="high">
+                <span class="logo-text">JS Brixen</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            <nav class="nav">
+                <a href="index.html" class="nav__link">Home</a>
+                <a href="services.html" class="nav__link">Services</a>
+                <a href="projects.html" class="nav__link">Projects</a>
+                <a href="book-consultation.html" class="nav__link">Booking</a>
+                <a href="about.html" class="nav__link">About</a>
+                <a href="contact.html" class="nav__link">Contact</a>
+                <div class="nav__account-wrapper">
+                    <button class="nav__link nav__account-toggle" aria-expanded="false">Account</button>
+                    <div class="account-dropdown" hidden>
+                        <!-- Logged out state -->
+                        <div class="account-dropdown__guest">
+                            <p>Sign in to track your bookings</p>
+                            <button class="btn-primary btn-sm" id="accountSignInBtn">Sign In</button>
+                        </div>
+                        <!-- Logged in state -->
+                        <div class="account-dropdown__user" hidden>
+                            <img class="account-dropdown__avatar" src="" alt="User Avatar">
+                            <div class="account-dropdown__info">
+                                <span class="account-dropdown__name"></span>
+                                <span class="account-dropdown__email"></span>
+                            </div>
+                            <a href="my-bookings.html" class="account-dropdown__link">📅 My Bookings</a>
+                            <button class="btn-secondary btn-sm" id="accountSignOutBtn">Sign Out</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero page-hero--small">
+            <div class="container">
+                <h1>My Bookings</h1>
+                <p class="page-hero__subtext">Track your requests and view messages from our team.</p>
+            </div>
+        </section>
+
+        <!-- Bookings Section -->
+        <section class="section">
+            <div class="container">
+                <div id="bookings-container">
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Loading your bookings...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Authentication Modal (Same as other pages) -->
+    <div id="authModal" class="auth-modal" aria-hidden="true">
+        <div class="auth-modal__backdrop"></div>
+        <div class="auth-modal__container">
+            <button class="auth-modal__close" aria-label="Close">×</button>
+
+            <div class="auth-modal__content">
+                <h2>Sign In</h2>
+                <div id="authStep1" class="auth-step">
+                    <button id="googleSignInBtn" class="btn-google">Continue with Google</button>
+                    <!-- Simplified for brevity, will work via auth-modal.js -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__section">
+                    <h3>JS Brixen</h3>
+                    <p>Building dreams across Kerala & Karnataka.</p>
+                </div>
+                <div class="footer__section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer__links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <p>&copy; 2026 JS Brixen. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/customer-auth.js"></script>
+    <script src="assets/js/auth-modal.js"></script>
+    <script src="assets/js/account-menu.js"></script>
+    <script type="module" src="assets/js/my-bookings.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

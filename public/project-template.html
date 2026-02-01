@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DYNAMIC: These will be updated by JavaScript based on project -->
+    <meta name="description" content="Professional construction project details | JS Brixen">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Project Details | JS Brixen">
+    <meta property="og:description" content="Explore our construction projects in Kerala & Karnataka">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80">
+
+    <title>Project Details | JS Brixen</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="assets/css/projects.css">
+
+    <!-- JSON-LD Structured Data (Will be populated by JavaScript) -->
+    <script type="application/ld+json" id="project-ld-json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Construction Project",
+      "description": "Professional construction project",
+      "creator": {
+        "@type": "Organization",
+        "name": "JS Brixen",
+        "url": "https://jsconstruction.com"
+      },
+      "areaServed": ["Kerala", "Karnataka"]
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__inner">
+            <a class="logo" href="index.html">
+                <img src="assets/images/js-logo.png" alt="JS Brixen" style="height: 60px; margin-right: 12px;"
+                    loading="eager" fetchpriority="high">
+                <span class="logo-text">JS Brixen</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            <nav class="nav">
+                <a href="index.html" class="nav__link">Home</a>
+                <a href="services.html" class="nav__link">Services</a>
+                <a href="projects.html" class="nav__link nav__link--active">Projects</a>
+                <a href="book-consultation.html" class="nav__link">Book Consultation</a>
+                <a href="about.html" class="nav__link">About</a>
+                <a href="contact.html" class="nav__link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Carousel -->
+        <section class="project-hero">
+            <div class="project-hero__carousel">
+                <!-- Slides will be populated by JavaScript -->
+            </div>
+            <div class="project-hero__controls">
+                <button class="carousel-prev" aria-label="Previous image">‹</button>
+                <button class="carousel-next" aria-label="Next image">›</button>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <!-- Content Layout: 2-column on desktop -->
+        <div class="project-content container">
+            <article class="project-main">
+                <!-- Breadcrumb -->
+                <nav aria-label="Breadcrumb" class="breadcrumb">
+                    <a href="projects.html">Projects</a> / <span id="project-title-breadcrumb">Loading...</span>
+                </nav>
+
+                <!-- Metadata Panel -->
+                <div class="project-meta">
+                    <h1 id="project-title">Loading Project...</h1>
+                    <span class="project-type-badge" id="project-type">Loading...</span>
+                    <dl class="project-details">
+                        <dt>Location</dt>
+                        <dd id="project-district">—</dd>
+                        <dt>Area</dt>
+                        <dd id="project-area">—</dd>
+                        <dt>Duration</dt>
+                        <dd id="project-duration">—</dd>
+                    </dl>
+                </div>
+
+                <!-- Full Description -->
+                <div class="project-description" id="project-description">
+                    <p>Loading project details...</p>
+                </div>
+
+                <!-- Gallery Grid -->
+                <section class="project-gallery">
+                    <h2>Project Gallery</h2>
+                    <div class="gallery-grid" id="gallery-grid">
+                        <!-- Gallery items will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Related Services -->
+                <section class="project-services">
+                    <h2>Services Provided</h2>
+                    <ul id="project-services-list">
+                        <li>Loading...</li>
+                    </ul>
+                </section>
+
+                <!-- Social Share -->
+                <div class="project-share">
+                    <h3 style="width: 100%; margin-bottom: var(--spacing-sm);">Share this project</h3>
+                    <button class="share-btn" data-action="copy">🔗 Copy Link</button>
+                    <a href="#" class="share-btn" data-action="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+                    <a href="#" class="share-btn" data-action="twitter" target="_blank" rel="noopener">Twitter</a>
+                    <a href="#" class="share-btn" data-action="facebook" target="_blank" rel="noopener">Facebook</a>
+                </div>
+            </article>
+
+            <!-- Sticky Sidebar CTA (desktop) -->
+            <aside class="project-sidebar">
+                <div class="sticky-cta-panel">
+                    <h3>Interested in this project?</h3>
+                    <p>Let's discuss how we can create something similar for you.</p>
+                    <a href="#" id="cta-consultation" class="btn-primary btn-lg">📅 Book Free Consultation</a>
+                    <a href="tel:+91XXXXXXXXXX" class="btn-secondary-outline">📞 Call Now</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-sticky-cta">
+        <a href="#" id="mobile-cta-consultation" class="btn-primary btn-full">📅 Book Free Consultation</a>
+    </div>
+
+    <!-- Lightbox Modal (Hidden by Default) -->
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery" hidden>
+        <div class="lightbox__backdrop"></div>
+        <div class="lightbox__container">
+            <button class="lightbox__close" aria-label="Close gallery">×</button>
+            <button class="lightbox__prev" aria-label="Previous image">‹</button>
+            <img class="lightbox__image" src="" alt="">
+            <button class="lightbox__next" aria-label="Next image">›</button>
+            <div class="lightbox__counter" aria-live="polite">1 / 1</div>
+            <div class="lightbox__caption"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__section">
+                    <h3>JS Brixen</h3>
+                    <p>Building dreams across Kerala & Karnataka with quality, trust, and expertise.</p>
+                </div>
+                <div class="footer__section footer__quick-links">
+                    <h3>Quick Links</h3>
+                    <ul class="footer__links">
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="book-consultation.html">Book Consultation</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section footer__contact">
+                    <h3>Contact</h3>
+                    <ul class="footer__links">
+                        <li><a id="footer-phone-link" href="tel:+91XXXXXXXXXX" data-keep-icon="true">📞 +91
+                                XXXXXXXXXX</a></li>
+                        <li><a id="footer-email-link" href="mailto:info@jsconstruction.com" data-keep-icon="true">📧
+                                info@jsconstruction.com</a></li>
+                        <li><a id="footer-whatsapp-link" href="https://wa.me/91XXXXXXXXXX" data-keep-icon="true">💬
+                                WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <p>&copy; 2026 JS Brixen. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/utils.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/customer-auth.js" defer></script>
+    <script src="assets/js/auth-modal.js" defer></script>
+    <script src="assets/js/account-menu.js" defer></script>
+    <script src="assets/js/projects.js" defer></script>
+
+    <script type="module">
+        import { fetchProjects } from './assets/js/projects-firestore.js';
+        import { fetchAndRenderContent } from './assets/js/content-loader.js?v=4';
+        document.addEventListener('DOMContentLoaded', fetchAndRenderContent);
+
+        // Load projects from Firestore when page loads
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const projects = await fetchProjects();
+
+                // Make projects available globally
+                window.FIRESTORE_PROJECTS = projects;
+
+                // Dispatch event to notify projects.js that data is ready
+                window.dispatchEvent(new CustomEvent('projectsLoaded', { detail: projects }));
+            } catch (error) {
+                console.error('Failed to load projects:', error);
+                // Redirect to projects page if loading fails
+                setTimeout(() => window.location.href = 'projects.html', 2000);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

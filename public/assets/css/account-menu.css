@@ -1,0 +1,174 @@
+/* ========================================
+   JS Brixen - Account Menu Dropdown
+   ======================================== */
+
+/* Account wrapper in navigation */
+.nav__account-wrapper {
+    position: relative;
+}
+
+/* Account toggle button */
+.nav__account-toggle {
+    background: none;
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.nav__account-toggle:hover {
+    color: var(--color-accent);
+    background-color: var(--color-glass);
+}
+
+/* Account dropdown card */
+.account-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 280px;
+    background: var(--color-surface-elevated);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--color-border-glow);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-dark), 0 0 20px rgba(0, 212, 255, 0.2);
+    padding: var(--spacing-md);
+    z-index: 1001;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.account-dropdown:not([hidden]) {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+/* Guest state (logged out) */
+.account-dropdown__guest {
+    text-align: center;
+}
+
+.account-dropdown__guest p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+}
+
+/* Logged in state */
+.account-dropdown__user {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.account-dropdown__avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--color-accent);
+    box-shadow: var(--shadow-glow-sm);
+    align-self: center;
+}
+
+.account-dropdown__info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.account-dropdown__name {
+    font-weight: 600;
+    font-size: 1.0625rem;
+    color: var(--color-text);
+}
+
+.account-dropdown__email {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.account-dropdown__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.625rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin: 4px 0;
+}
+
+.account-dropdown__link:hover {
+    background: var(--color-accent);
+    color: var(--color-white);
+    border-color: var(--color-accent);
+}
+
+/* Button sizing in dropdown */
+.btn-sm {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+
+/* Utility to hide elements properly */
+.account-dropdown [hidden] {
+    display: none !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .nav__account-wrapper {
+        width: 100%;
+        order: 999;
+    }
+
+    .nav__account-toggle {
+        width: 100%;
+        text-align: left;
+        padding: var(--spacing-sm);
+        border-bottom: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Add arrow indicator on mobile */
+    .nav__account-toggle::after {
+        content: '›';
+        font-size: 1.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .nav__account-toggle[aria-expanded="true"]::after {
+        transform: rotate(90deg);
+    }
+
+    .account-dropdown {
+        position: static;
+        width: calc(100% - var(--spacing-md));
+        min-width: 0;
+        /* Override desktop min-width */
+        margin: 0 var(--spacing-sm) var(--spacing-sm);
+        box-shadow: inset 0 0 0 1px var(--color-border);
+        border-radius: var(--radius-md);
+    }
+
+    /* Ensure dropdown is visible when opened on mobile */
+    .account-dropdown:not([hidden]) {
+        display: block;
+    }
+}

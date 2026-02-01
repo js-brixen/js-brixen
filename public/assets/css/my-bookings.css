@@ -1,0 +1,166 @@
+/* My Bookings Page Styles */
+main {
+    padding-top: 80px;
+    /* Accounts for fixed header */
+    min-height: 80vh;
+    /* Pushes footer to bottom */
+}
+
+.bookings-grid {
+    display: grid;
+    gap: var(--spacing-md);
+    grid-template-columns: 1fr;
+    margin-top: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .bookings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.booking-card {
+    background: var(--color-glass);
+    backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    box-shadow: var(--shadow-card);
+}
+
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.booking-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.booking-date {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+}
+
+.booking-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-new {
+    background: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+}
+
+.status-contacted {
+    background: rgba(241, 196, 15, 0.2);
+    color: #f1c40f;
+}
+
+.status-scheduled {
+    background: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+
+.status-closed {
+    background: rgba(149, 165, 166, 0.2);
+    color: #95a5a6;
+}
+
+.booking-content {
+    flex: 1;
+}
+
+.booking-detail-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+}
+
+.booking-detail-label {
+    color: var(--color-text-light);
+    min-width: 80px;
+}
+
+/* Messages Section */
+.booking-messages {
+    margin-top: var(--spacing-md);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+}
+
+.messages-header {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.message-bubble {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    position: relative;
+    border-left: 3px solid var(--color-accent);
+}
+
+.message-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    margin-bottom: 4px;
+}
+
+.message-author {
+    font-weight: 600;
+    color: var(--color-accent);
+}
+
+.no-messages {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    font-style: italic;
+    text-align: center;
+    padding: 8px;
+}
+
+.loading-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--color-text-light);
+}
+
+.auth-required-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--color-glass);
+    border-radius: var(--radius-lg);
+    margin-top: 40px;
+}

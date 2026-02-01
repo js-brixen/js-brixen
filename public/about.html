@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn about JS Brixen - Premier construction services in Kerala & Karnataka. Experienced team, quality craftsmanship, and customer satisfaction since [YEAR].">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About Us | JS Brixen">
+    <meta property="og:description"
+        content="Building dreams across Kerala & Karnataka with quality, trust, and expertise">
+    <meta property="og:type" content="website">
+
+    <title>About Us | JS Brixen Kerala & Karnataka</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="preload" href="assets/css/styles.css" as="style">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/account-menu.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/auth-modal.css">
+
+    <!-- JSON-LD Structured Data (for SEO) -->
+    <!--
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "JS Brixen",
+      "description": "Premier construction services in Kerala & Karnataka",
+      "url": "https://jsconstruction.com",
+      "areaServed": [
+        {
+          "@type": "State",
+          "name": "Kerala"
+        },
+        {
+          "@type": "State",
+          "name": "Karnataka"
+        }
+      ],
+      "priceRange": "₹₹-₹₹₹",
+      "telephone": "+91XXXXXXXXXX",
+      "email": "info@jsconstruction.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "[City]",
+        "addressRegion": "Kerala",
+        "addressCountry": "IN"
+      }
+    }
+    </script>
+    -->
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__inner">
+            <a class="logo" href="index.html">
+                <img src="assets/images/js-logo.png" alt="JS Brixen" style="height: 60px; margin-right: 12px;">
+                <span class="logo-text">JS Brixen</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            <nav class="nav">
+                <a href="index.html" class="nav__link">Home</a>
+                <a href="services.html" class="nav__link">Services</a>
+                <a href="projects.html" class="nav__link">Projects</a>
+                <a href="book-consultation.html" class="nav__link">Booking</a>
+                <a href="about.html" class="nav__link nav__link--active">About</a>
+                <a href="contact.html" class="nav__link">Contact</a>
+                <div class="nav__account-wrapper">
+                    <button class="nav__link nav__account-toggle" aria-expanded="false">Account</button>
+                    <div class="account-dropdown" hidden>
+                        <!-- Logged out state -->
+                        <div class="account-dropdown__guest">
+                            <p>Sign in to track your bookings</p>
+                            <button class="btn-primary btn-sm" id="accountSignInBtn">Sign In</button>
+                        </div>
+                        <!-- Logged in state -->
+                        <div class="account-dropdown__user" hidden>
+                            <img class="account-dropdown__avatar" src="" alt="User Avatar">
+                            <div class="account-dropdown__info">
+                                <span class="account-dropdown__name"></span>
+                                <span class="account-dropdown__email"></span>
+                            </div>
+                            <button class="btn-secondary btn-sm" id="accountSignOutBtn">Sign Out</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero page-hero--small">
+            <div class="container">
+                <h1>About Us</h1>
+                <p class="page-hero__subtext">Building Dreams, One Home at a Time</p>
+            </div>
+        </section>
+
+        <!-- Company Overview -->
+        <section class="about-overview">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h2>Our Story</h2>
+                        <p class="about-lead">
+                            Constructing Excellence, Building Trust
+                        </p>
+                        <p class="about-text" id="about-story" style="margin-bottom: var(--spacing-md);">
+                            Founded in [Year], JS Brixen has grown from a small team of passionate builders
+                            to a trusted name in residential and commercial construction. We pride ourselves on
+                            delivering projects that stand the test of time, with a focus on structural integrity
+                            and aesthetic excellence.
+                        </p>
+                        <p>
+                            With over <strong>[X] years of experience</strong>, we've completed <strong>[X]+
+                                projects</strong>
+                            ranging from modern villas to traditional Kerala homes, always maintaining our commitment
+                            to quality, transparency, and customer satisfaction.
+                        </p>
+                        <p>
+                            Every project we undertake is a testament to our dedication to excellence. We believe
+                            that building a home is not just about bricks and mortar—it's about creating spaces
+                            where memories are made and dreams come true.
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
+                            alt="JS Brixen team at work" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Expertise -->
+        <section class="about-experience">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: var(--spacing-md);">Our Experience & Expertise</h2>
+                <div class="stats-row">
+                    <div class="stat">
+                        <span id="stat-years">10+</span>
+                        Years Experience
+                    </div>
+                    <div class="stat">
+                        <span id="stat-projects">200+</span>
+                        Projects Completed
+                    </div>
+                    <div class="stat">
+                        <span id="stat-clients">500+</span>
+                        Happy Clients
+                    </div>
+                    <div class="stat">
+                        <span id="stat-team">50+</span>
+                        Team Members
+                    </div>
+                </div>
+                <!-- PLACEHOLDER: Customize these numbers with actual data -->
+            </div>
+        </section>
+
+        <!-- Our Values -->
+        <section class="about-values">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: var(--spacing-md);">Our Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <span class="value-icon">🏗️</span>
+                        <h3>Quality First</h3>
+                        <p>
+                            We never compromise on quality. Using premium materials and proven construction
+                            techniques, we ensure every structure stands the test of time.
+                        </p>
+                    </div>
+
+                    <div class="value-card">
+                        <span class="value-icon">🤝</span>
+                        <h3>Transparency</h3>
+                        <p>
+                            Clear communication and honest pricing—no hidden costs, no surprises.
+                            We keep you informed at every stage of your project.
+                        </p>
+                    </div>
+
+                    <div class="value-card">
+                        <span class="value-icon">⏰</span>
+                        <h3>On-Time Delivery</h3>
+                        <p>
+                            We respect your timeline and work efficiently to deliver projects on schedule
+                            without compromising on quality.
+                        </p>
+                    </div>
+
+                    <div class="value-card">
+                        <span class="value-icon">🌱</span>
+                        <h3>Sustainability</h3>
+                        <p>
+                            Embracing eco-friendly practices and sustainable building materials wherever
+                            possible to create environmentally responsible structures.
+                        </p>
+                    </div>
+
+                    <div class="value-card">
+                        <span class="value-icon">💡</span>
+                        <h3>Innovation</h3>
+                        <p>
+                            Staying updated with modern construction techniques, design trends, and
+                            technology to deliver cutting-edge solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Areas We Serve -->
+        <section class="about-areas">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: var(--spacing-md);">Areas We Serve</h2>
+                <div class="areas-grid">
+                    <div class="area">
+                        <h3>Kerala</h3>
+                        <p>
+                            We serve all 14 districts of Kerala including Thiruvananthapuram, Kochi (Ernakulam),
+                            Kozhikode, Thrissur, Kottayam, Palakkad, Malappuram, Kannur, and more.
+                        </p>
+                        <p style="margin-top: 0.5rem; color: var(--color-accent); font-weight: 600;">
+                            Complete Kerala coverage
+                        </p>
+                    </div>
+                    <div class="area">
+                        <h3>Karnataka</h3>
+                        <p>
+                            We serve major cities and regions in Karnataka including Bengaluru, Mysuru,
+                            Mangaluru, Hubli-Dharwad, and surrounding areas.
+                        </p>
+                        <p style="margin-top: 0.5rem; color: var(--color-accent); font-weight: 600;">
+                            Major Karnataka cities
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Map Placeholder -->
+                <div style="margin-top: var(--spacing-lg); text-align: center;">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80"
+                        alt="Service areas map - Kerala and Karnataka" class="areas-map" loading="lazy"
+                        style="max-height: 400px; object-fit: cover;">
+                    <!-- PLACEHOLDER: Replace with actual service area map -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Quality & Commitment -->
+        <section class="about-quality">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: var(--spacing-md);">Quality & Commitment</h2>
+                <ul>
+                    <li>Rigorous quality checks at every construction stage</li>
+                    <li>Licensed and experienced contractors and engineers</li>
+                    <li>Structural warranty on all projects</li>
+                    <li>Use of ISI-certified and premium quality materials</li>
+                    <li>Compliance with local building codes and regulations</li>
+                    <li>Regular project updates and transparent communication</li>
+                    <li>Post-construction support and maintenance guidance</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Team Section (Placeholder) -->
+        <!--
+        <section style="padding: var(--spacing-lg) 0; background-color: var(--color-bg);">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: var(--spacing-md);">Meet Our Team</h2>
+                <p style="text-align: center; color: var(--color-text-light); margin-bottom: var(--spacing-lg);">
+                    Our experienced professionals are dedicated to bringing your vision to life
+                </p>
+                
+                TODO: Add team member cards with photos, names, and roles
+                Example:
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="..." alt="Name">
+                        <h3>Name</h3>
+                        <p>Role/Position</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        -->
+
+        <!-- Testimonials Placeholder -->
+        <!--
+        <section style="padding: var(--spacing-lg) 0;">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: var(--spacing-md);">What Our Clients Say</h2>
+                
+                TODO: Add client testimonials
+                Example:
+                <div class="testimonials-grid">
+                    <div class="testimonial">
+                        <p>"Quote from client..."</p>
+                        <strong>- Client Name, Location</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+        -->
+
+        <!-- Certifications Placeholder -->
+        <!--
+        <section style="padding: var(--spacing-lg) 0; background-color: var(--color-bg);">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: var(--spacing-md);">Certifications & Awards</h2>
+                
+                TODO: Add certification logos and awards
+            </div>
+        </section>
+        -->
+
+        <!-- CTA Section -->
+        <section class="about-cta">
+            <div class="container">
+                <h2 id="cta-title">Ready to Start Your Project?</h2>
+                <p id="cta-text">Book a free consultation with our construction experts today.</p>
+                <div class="cta-buttons">
+                    <a href="book-consultation.html" class="btn-primary">Book Free Consultation</a>
+                    <a href="tel:+91XXXXXXXXXX" class="btn-phone" id="about-cta-call">📞 Call Now</a>
+                    <a href="https://wa.me/91XXXXXXXXXX" class="btn-whatsapp" id="about-cta-whatsapp">💬 WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Customer Authentication Modal -->
+    <div id="authModal" class="auth-modal" aria-hidden="true">
+        <div class="auth-modal__backdrop"></div>
+        <div class="auth-modal__container">
+            <button class="auth-modal__close" aria-label="Close">×</button>
+
+            <div class="auth-modal__content">
+                <h2>Sign In to Continue</h2>
+                <p>Please sign in to access your account</p>
+
+                <!-- Step 1: Sign In Options -->
+                <div id="authStep1" class="auth-step" style="display: block;">
+                    <button id="googleSignInBtn" class="btn-google">
+                        <svg width="20" height="20" viewBox="0 0 48 48">
+                            <path fill="#FFC107"
+                                d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />
+                            <path fill="#FF3D00"
+                                d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" />
+                            <path fill="#4CAF50"
+                                d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" />
+                            <path fill="#1976D2"
+                                d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
+                        </svg>
+                        Continue with Google
+                    </button>
+
+                    <div class="auth-separator">
+                        <span>OR</span>
+                    </div>
+
+                    <form id="emailSignInForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="signInEmail">Email</label>
+                            <input type="email" id="signInEmail" required placeholder="name@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="signInPassword">Password</label>
+                            <input type="password" id="signInPassword" required placeholder="Enter your password">
+                        </div>
+                        <button type="submit" id="emailSignInBtn" class="btn-primary" style="width: 100%;">Sign
+                            In</button>
+                    </form>
+
+                    <div class="auth-switch">
+                        <p>Don't have an account? <button id="switchToSignUp" class="btn-link">Sign Up</button></p>
+                    </div>
+                </div>
+
+                <!-- Step: Sign Up -->
+                <div id="authStepSignUp" class="auth-step" style="display: none;">
+                    <button class="btn-google google-signup-btn">
+                        <svg width="20" height="20" viewBox="0 0 48 48">
+                            <path fill="#FFC107"
+                                d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />
+                            <path fill="#FF3D00"
+                                d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" />
+                            <path fill="#4CAF50"
+                                d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" />
+                            <path fill="#1976D2"
+                                d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
+                        </svg>
+                        Continue with Google
+                    </button>
+
+                    <div class="auth-separator">
+                        <span>OR</span>
+                    </div>
+
+                    <form id="emailSignUpForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="signUpName">Full Name</label>
+                            <input type="text" id="signUpName" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpEmail">Email</label>
+                            <input type="email" id="signUpEmail" required placeholder="name@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpPassword">Password</label>
+                            <input type="password" id="signUpPassword" required
+                                placeholder="Create a password (min 6 chars)" minlength="6">
+                        </div>
+                        <button type="submit" id="emailSignUpBtn" class="btn-primary" style="width: 100%;">Create
+                            Account</button>
+                    </form>
+
+                    <div class="auth-switch">
+                        <p>Already have an account? <button id="switchToSignIn" class="btn-link">Sign In</button></p>
+                    </div>
+                </div>
+
+                <!-- Step 2: Phone Number (for new signups) -->
+                <div id="authStep2" class="auth-step" style="display: none;">
+                    <p>Almost done! Enter your phone number:</p>
+                    <input type="tel" id="customerPhone" placeholder="9876543210" pattern="[6-9][0-9]{9}" maxlength="10"
+                        required>
+                    <span style="font-size: 14px; color: #666; display: block; margin-bottom: 16px;">10-digit number
+                        starting with 6-9</span>
+                    <button id="completeSignupBtn" class="btn-primary">Complete Sign Up</button>
+                </div>
+
+                <!-- Logged In State -->
+                <div id="authLoggedIn" class="auth-step" style="display: none;">
+                    <div class="user-info">
+                        <img id="userPhoto" src="" alt="Profile">
+                        <span id="userName"></span>
+                    </div>
+                    <p>You're signed in!</p>
+                    <button id="continueBtn" class="btn-primary">Continue</button>
+                    <button id="signOutBtn" class="btn-text">Sign out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__section">
+                    <h3>JS Brixen</h3>
+                    <p>Building dreams across Kerala & Karnataka with quality, trust, and expertise.</p>
+                </div>
+                <div class="footer__section footer__quick-links">
+                    <h3>Quick Links</h3>
+                    <ul class="footer__links">
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="book-consultation.html">Booking</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section footer__contact">
+                    <h3>Contact</h3>
+                    <ul class="footer__links">
+                        <li><a href="tel:+91XXXXXXXXXX" id="footer-phone-link" data-keep-icon="true">📞 +91
+                                XXXXXXXXXX</a></li>
+                        <li><a href="mailto:info@jsconstruction.com" id="footer-email-link" data-keep-icon="true">📧
+                                info@jsconstruction.com</a></li>
+                        <li><a href="https://wa.me/91XXXXXXXXXX" id="footer-whatsapp-link" data-keep-icon="true">💬
+                                WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <p>&copy; 2026 JS Brixen. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/utils.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/customer-auth.js" defer></script>
+    <script src="assets/js/auth-modal.js" defer></script>
+    <script src="assets/js/account-menu.js" defer></script>
+
+    <!-- Sticky Mobile CTA -->
+    <a href="book-consultation.html" class="mobile-sticky-cta">
+        <div class="mobile-sticky-cta__text">
+            <span class="mobile-sticky-cta__icon">🏗️</span>
+            Book Free Consultation
+        </div>
+        <div class="mobile-sticky-cta__arrow">
+            ▶
+        </div>
+    </a>
+    <script type="module">
+        import { fetchAndRenderContent } from './assets/js/content-loader.js?v=4';
+        document.addEventListener('DOMContentLoaded', fetchAndRenderContent);
+    </script>
+
+</body>
+
+</html>
