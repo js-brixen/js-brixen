@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Force Reset Firebase Content</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4444;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .status.success {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #00ff00;
+            display: block;
+        }
+
+        .status.error {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: #ff6b6b;
+            display: block;
+        }
+
+        .warning {
+            background: rgba(255, 165, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffa500;
+        }
+
+        pre {
+            text-align: left;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔥 FORCE RESET Firebase Content</h1>
+
+        <div class="warning">
+            <h3>⚠️ WARNING:</h3>
+            <p>This will <strong>DELETE</strong> the old document and create a fresh one.</p>
+            <p>Use this only if the regular initialization didn't work.</p>
+        </div>
+
+        <button id="resetBtn" onclick="forceReset()">
+            💥 DELETE & RECREATE Firebase Data
+        </button>
+
+        <div id="status" class="status"></div>
+        <pre id="logs" style="display: none;"></pre>
+    </div>
+
+    <script type="module">
+        import { db } from './js/firebase/init.js';
+        import { doc, deleteDoc, setDoc, getDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js';
+
+        const logs = [];
+        function log(message) {
+            logs.push(message);
+            console.log(message);
+            document.getElementById('logs').textContent = logs.join('\n');
+            document.getElementById('logs').style.display = 'block';
+        }
+
+        window.forceReset = async function () {
+            const btn = document.getElementById('resetBtn');
+            const status = document.getElementById('status');
+
+            btn.disabled = true;
+            btn.textContent = '⏳ Working...';
+            status.className = 'status';
+            status.style.display = 'none';
+            logs.length = 0;
+
+            try {
+                const docRef = doc(db, 'siteContent', 'main');
+
+                // Step 1: Check if document exists
+                log('📡 Step 1: Checking if document exists...');
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    log('✅ Document EXISTS');
+                    log('📄 Current data:');
+                    log(JSON.stringify(docSnap.data(), null, 2));
+
+                    // Step 2: DELETE the old document
+                    log('\n🗑️ Step 2: DELETING old document...');
+                    await deleteDoc(docRef);
+                    log('✅ Old document DELETED');
+                } else {
+                    log('⚠️ No existing document found');
+                }
+
+                // Step 3: Create fresh content
+                log('\n📝 Step 3: Creating FRESH content...');
+                const freshContent = {
+                    hero: {
+                        title: 'Building Your Vision Into Reality',
+                        subtext: 'Premium construction services across Kerala & Karnataka. From custom homes to commercial projects, we deliver excellence with every build.',
+                        ctaText: 'Get Free Quote'
+                    },
+                    about: {
+                        story: 'Founded with a vision to transform the construction industry in Kerala and Karnataka, JS Construction has grown from a small team of passionate builders to a trusted name in residential and commercial construction.',
+                        statsYears: '10+',
+                        statsProjects: '200+',
+                        statsClients: '500+',
+                        statsTeam: '50+'
+                    },
+                    howItWorks: [
+                        {
+                            step: '1',
+                            title: 'Book Consultation',
+                            description: 'Schedule a free consultation with our experts to discuss your project requirements and vision.'
+                        },
+                        {
+                            step: '2',
+                            title: 'Contact us',
+                            description: 'Receive a detailed, transparent quote with no hidden costs.'
+                        },
+                        {
+                            step: '3',
+                            title: 'Get Building',
+                            description: 'Our experienced team begins construction with regular updates and quality checks.'
+                        }
+                    ],
+                    cta: {
+                        title: 'Ready to Start Your Project?',
+                        text: "Let's discuss your vision and bring it to life with expert construction services"
+                    },
+                    contact: {
+                        phone: '+91XXXXXXXXXX',
+                        phones: ['+91XXXXXXXXXX'],
+                        email: 'info@jsconstruction.com',
+                        whatsapp: '91XXXXXXXXXX'
+                    },
+                    updatedAt: Timestamp.now()
+                };
+
+                // Step 4: Write fresh content
+                log('\n💾 Step 4: Writing fresh content to Firebase...');
+                await setDoc(docRef, freshContent);
+                log('✅ Fresh content SAVED');
+
+                // Step 5: Verify
+                log('\n✔️ Step 5: Verifying...');
+                const verifySnap = await getDoc(docRef);
+                if (verifySnap.exists()) {
+                    const data = verifySnap.data();
+                    log('✅ VERIFICATION PASSED');
+                    log('✅ Hero title: ' + data.hero?.title);
+                    log('✅ Full content saved successfully!');
+                } else {
+                    throw new Error('Verification failed - document not found after creation');
+                }
+
+                status.className = 'status success';
+                status.innerHTML = `
+                    <strong>✅ SUCCESS!</strong><br>
+                    Old data has been DELETED and fresh content created!<br>
+                    <br>
+                    <strong>NOW DO THIS:</strong><br>
+                    1. Go to Flutter terminal<br>
+                    2. Press <strong>R</strong> (capital R) to HOT RESTART<br>
+                    3. Wait for app to reload<br>
+                    4. Check Content Management<br>
+                    5. Should NOW show: <strong>"Building Your Vision Into Reality"</strong>
+                `;
+
+                btn.textContent = '✅ Reset Complete';
+
+            } catch (error) {
+                log('\n❌ ERROR: ' + error.message);
+                log(error.stack);
+
+                status.className = 'status error';
+                status.innerHTML = `
+                    <strong>❌ Error!</strong><br>
+                    ${error.message}<br>
+                    <br>
+                    Check the logs above for details.
+                `;
+
+                btn.disabled = false;
+                btn.textContent = '🔄 Try Again';
+            }
+        };
+    </script>
+</body>
+
+</html>

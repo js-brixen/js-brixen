@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initialize Firebase Content</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #00d4ff;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #00d4ff, #00b4d8);
+            color: #0a0a0f;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .status.success {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #00ff00;
+            display: block;
+        }
+
+        .status.error {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: #ff6b6b;
+            display: block;
+        }
+
+        .content-preview {
+            margin-top: 20px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .instructions {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00d4ff;
+        }
+
+        .instructions h3 {
+            margin-top: 0;
+            color: #00d4ff;
+        }
+
+        .instructions ol {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        .instructions li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔥 Firebase Content Initializer</h1>
+
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Click the button below to initialize Firebase with current website content</li>
+                <li>This will populate the database with all hero, about, and "How It Works" content</li>
+                <li>After initialization, you can edit content from the Flutter admin app</li>
+                <li>Changes from the app will appear on the website immediately!</li>
+            </ol>
+        </div>
+
+        <button id="initBtn" onclick="runInitialization()">
+            🚀 Initialize Firebase Database
+        </button>
+
+        <div id="status" class="status"></div>
+        <div id="preview" class="content-preview" style="display: none;"></div>
+    </div>
+
+    <script type="module">
+        import { db } from './js/firebase/init.js';
+        import { doc, setDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js';
+
+        window.runInitialization = async function () {
+            const btn = document.getElementById('initBtn');
+            const status = document.getElementById('status');
+            const preview = document.getElementById('preview');
+
+            btn.disabled = true;
+            btn.textContent = '⏳ Initializing...';
+            status.className = 'status';
+            status.style.display = 'none';
+
+            const initialContent = {
+                hero: {
+                    title: 'Building Your Vision Into Reality',
+                    subtext: 'Premium construction services across Kerala & Karnataka. From custom homes to commercial projects, we deliver excellence with every build.',
+                    ctaText: 'Get Free Quote'
+                },
+                about: {
+                    story: 'Founded with a vision to transform the construction industry in Kerala and Karnataka, JS Construction has grown from a small team of passionate builders to a trusted name in residential and commercial construction.',
+                    statsYears: '10+',
+                    statsProjects: '200+',
+                    statsClients: '500+',
+                    statsTeam: '50+'
+                },
+                howItWorks: [
+                    {
+                        step: '1',
+                        title: 'Book Consultation',
+                        description: 'Schedule a free consultation with our experts to discuss your project requirements and vision.'
+                    },
+                    {
+                        step: '2',
+                        title: 'Contact us',
+                        description: 'Receive a detailed, transparent quote with no hidden costs.'
+                    },
+                    {
+                        step: '3',
+                        title: 'Get Building',
+                        description: 'Our experienced team begins construction with regular updates and quality checks.'
+                    }
+                ],
+                cta: {
+                    title: 'Ready to Start Your Project?',
+                    text: "Let's discuss your vision and bring it to life with expert construction services"
+                },
+                contact: {
+                    phone: '+91XXXXXXXXXX',
+                    phones: ['+91XXXXXXXXXX'],
+                    email: 'info@jsconstruction.com',
+                    whatsapp: '91XXXXXXXXXX'
+                },
+                updatedAt: Timestamp.now()
+            };
+
+            try {
+                console.log('[Init] 📡 Starting Firebase initialization...');
+                console.log('[Init] Target: siteContent/main');
+
+                const docRef = doc(db, 'siteContent', 'main');
+                // Use merge: false to COMPLETELY OVERWRITE old data
+                await setDoc(docRef, initialContent, { merge: false });
+
+                console.log('[Init] ✅ Firebase successfully initialized!');
+
+                status.className = 'status success';
+                status.innerHTML = `
+                    <strong>✅ Success!</strong><br>
+                    Firebase has been initialized!<br>
+                    <strong>Old data has been OVERWRITTEN</strong><br>
+                    <br>
+                    <strong>Next steps:</strong><br>
+                    1. Go to Flutter terminal<br>
+                    2. Press <strong>R</strong> to HOT RESTART the app<br>
+                    3. Go to "Content Management"<br>
+                    4. You should now see: <strong>"Building Your Vision Into Reality"</strong><br>
+                    5. Make changes and save!
+                `;
+
+                status.className = 'status success';
+                status.innerHTML = `
+                    <strong>✅ Success!</strong><br>
+                    Firebase has been initialized with website content.<br>
+                    <br>
+                    <strong>Next steps:</strong><br>
+                    1. Open your Flutter admin app<br>
+                    2. Go to "Content Management"<br>
+                    3. You should see all the content loaded<br>
+                    4. Make changes and save - they'll appear on the website immediately!
+                `;
+
+                preview.style.display = 'block';
+                preview.textContent = JSON.stringify(initialContent, null, 2);
+
+                btn.textContent = '✓ Initialization Complete';
+
+                console.log('✅ Content initialized:', initialContent);
+            } catch (error) {
+                status.className = 'status error';
+                status.innerHTML = `
+                    <strong>❌ Error!</strong><br>
+                    ${error.message}<br>
+                    <br>
+                    Please check the browser console for details.
+                `;
+
+                btn.disabled = false;
+                btn.textContent = '🔄 Try Again';
+
+                console.error('❌ Initialization error:', error);
+            }
+        };
+    </script>
+</body>
+
+</html>

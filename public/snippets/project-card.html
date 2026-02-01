@@ -1,0 +1,47 @@
+<!-- 
+  Project Card HTML Fragment
+  Use this as a reference for the project card structure
+-->
+
+<article class="project-card" tabindex="0" data-slug="project-slug" data-index="0">
+    <div class="project-card__image-wrapper">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=450&fit=crop&q=80"
+            alt="Project cover image description" class="project-card__image" loading="lazy">
+        <span class="project-card__badge project-card__badge--new">
+            New Construction
+        </span>
+        <span class="project-card__photo-count">
+            📷 6
+        </span>
+    </div>
+    <div class="project-card__content">
+        <h3 class="project-card__title">Lakeside Modern Villa</h3>
+        <div class="project-card__district">📍 Kochi, Kerala</div>
+        <p class="project-card__summary">
+            Contemporary 4BHK villa with panoramic lake views, infinity pool, and sustainable design features.
+        </p>
+        <div class="project-card__actions">
+            <a href="project-template.html?project=lakeside-modern-villa" class="btn-primary btn-sm">
+                View Project
+            </a>
+            <a href="book-consultation.html?relatedProjectId=lakeside-modern-villa&relatedProjectTitle=Lakeside%20Modern%20Villa"
+                class="btn-secondary-outline btn-sm">
+                Book Consultation
+            </a>
+        </div>
+    </div>
+</article>
+
+<!--
+  Badge Types:
+  - project-card__badge--new (green)
+  - project-card__badge--renovation (blue)
+  - project-card__badge--interior (purple)
+  
+  Notes:
+  - The card is keyboard-focusable (tabindex="0")
+  - data-slug is used for navigation
+  - data-index is used for keyboard navigation
+  - Images should use loading="lazy" except for above-the-fold content
+  - Summary text is truncated to 2 lines via CSS (-webkit-line-clamp: 2)
+-->
