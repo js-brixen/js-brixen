@@ -1376,6 +1376,14 @@ button:focus {
     /* Force tight padding */
   }
 
+  /* Add margin to footer when sticky CTA is present to prevent overlap */
+  /* Using margin instead of padding prevents visible empty space */
+  /* Add padding to footer when sticky CTA is present to prevent overlap */
+  /* Using padding ensures footer background extends behind the CTA, eliminating gaps */
+  body:has(.mobile-sticky-cta) .footer {
+    padding-bottom: 60px;
+  }
+
   .stat-number {
     font-size: 1.5rem;
     /* Reduced from 1.75rem */
